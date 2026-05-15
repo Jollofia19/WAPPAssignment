@@ -1,42 +1,46 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data.SqlClient;
 
-public partial class Login : System.Web.UI.Page
+namespace WAPPAssignment
 {
-    protected void btnLogin_Click(object sender, EventArgs e)
+    public partial class Login : System.Web.UI.Page
     {
-        string connStr = ConfigurationManager.ConnectionStrings["CodeMasterConnection"].ConnectionString;
-
-        using (SqlConnection con = new SqlConnection(connStr))
+        protected void btnLogin_Click(object sender, EventArgs e)
         {
-            con.Open();
+            string connStr = ConfigurationManager.ConnectionStrings["CodeMasterConnection"].ConnectionString;
 
-            string query = "SELECT * FROM Users WHERE Email=@Email AND PasswordHash=@Password";
-
-            SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-            cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            if (reader.Read())
+            using (SqlConnection con = new SqlConnection(connStr))
             {
-                Session["UserID"] = reader["UserID"].ToString();
-                Session["Role"] = reader["Role"].ToString();
+                string query = "SELECT UserID, FullName, Role FROM Users WHERE Email=@Email AND PasswordHash=@Password AND Status='Active'";
 
-                if (reader["Role"].ToString() == "Admin")
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
+
+                con.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
                 {
-                    Response.Redirect("Admin/Dashboard.aspx");
+                    Session["UserID"] = reader["UserID"].ToString();
+                    Session["FullName"] = reader["FullName"].ToString();
+                    Session["Role"] = reader["Role"].ToString();
+
+                    if (reader["Role"].ToString() == "Admin")
+                    {
+                        Response.Redirect("Admin/Dashboard.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("Courses.aspx");
+                    }
                 }
                 else
                 {
-                    Response.Redirect("Courses.aspx");
+                    lblMessage.Text = "Invalid email or password.";
                 }
-            }
-            else
-            {
-                lblMessage.Text = "Invalid login credentials!";
             }
         }
     }

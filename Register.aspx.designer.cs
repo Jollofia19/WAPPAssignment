@@ -11,7 +11,7 @@ namespace WAPPAssignment
 {
 
 
-    public partial class Login
+    public partial class Register
     {
 
         /// <summary>
@@ -24,13 +24,13 @@ namespace WAPPAssignment
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// lblEmail control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmail;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
         /// txtEmail control.
@@ -42,15 +42,6 @@ namespace WAPPAssignment
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// lblPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPassword;
-
-        /// <summary>
         /// txtPassword control.
         /// </summary>
         /// <remarks>
@@ -60,13 +51,22 @@ namespace WAPPAssignment
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
 
         /// <summary>
-        /// btnLogin control.
+        /// ddlRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRole;
+
+        /// <summary>
+        /// btnRegister control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegister;
 
         /// <summary>
         /// lblMessage control.
