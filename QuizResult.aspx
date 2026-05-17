@@ -6,17 +6,28 @@
     <title>Quiz Result</title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/Site.css" rel="stylesheet" />
+
+    <style>
+        body { background: #f5f7fb; font-family: Arial, sans-serif; }
+        .result-card { max-width: 800px; margin: 60px auto; background: white; padding: 40px; border-radius: 18px; box-shadow: 0 6px 18px rgba(0,0,0,0.08); text-align: center; }
+        .result-card h2 { font-weight: 700; color: #1f2937; margin-bottom: 10px; }
+        .module-path { color: #6b7280; margin-bottom: 30px; }
+        .score-box { background: #fbfdff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 30px; margin-bottom: 25px; }
+        .score-label { font-size: 24px; font-weight: bold; color: #337ab7; display: block; margin-bottom: 15px; }
+        .status-label { font-size: 34px; font-weight: 800; display: block; }
+        .btn { border-radius: 8px; margin: 5px; }
+    </style>
 </head>
 <body>
 <form id="form1" runat="server">
-    <div class="container" style="margin-top:40px;">
+    <div class="result-card">
         <h2>Quiz Result</h2>
+        <p class="module-path">HTML Fundamentals → Module Quiz</p>
 
-        <asp:Label ID="lblScore" runat="server" Font-Size="Large"></asp:Label>
-        <br /><br />
-        <asp:Label ID="lblStatus" runat="server" Font-Size="Large" Font-Bold="true"></asp:Label>
-
-        <br /><br />
+        <div class="score-box">
+            <asp:Label ID="lblScore" runat="server" CssClass="score-label"></asp:Label>
+            <asp:Label ID="lblStatus" runat="server" CssClass="status-label"></asp:Label>
+        </div>
 
         <a href="Quiz.aspx" class="btn btn-primary">Retake Quiz</a>
         <a href="Default.aspx" class="btn btn-default">Back Home</a>
